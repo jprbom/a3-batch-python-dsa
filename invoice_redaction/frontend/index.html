@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice Redaction Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Invoice Redaction Viewer</h1>
+        <p>
+          Upload invoices, run OCR redaction, and review detected PII.
+        </p>
+      </div>
+      <button id="refresh">Refresh Report</button>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Upload Invoices</h2>
+        <form id="upload-form" class="upload">
+          <input id="file-input" type="file" accept=".pdf,.png,.jpg,.jpeg,.tiff,.tif" />
+          <button type="submit">Upload &amp; Process</button>
+        </form>
+        <p id="upload-status" class="status"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Redacted Pages</h2>
+        <div id="gallery" class="gallery">
+          <p class="empty">Loading redacted pages…</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>PII Detections</h2>
+        <div id="summary" class="summary"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Page</th>
+                <th>Language</th>
+                <th>Type</th>
+                <th>Sample</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody id="detections">
+              <tr>
+                <td colspan="6" class="empty">Loading detections…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Run the backend with <code>python invoice_redaction/app.py</code> and visit
+        <code>http://localhost:8000</code>.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
